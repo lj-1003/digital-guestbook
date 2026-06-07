@@ -1,7 +1,10 @@
 import { addMessage } from '../../firebaseDB.js'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function ComposeForm() {
+  const navigate = useNavigate();
   const [newName, setNewName] = useState(""); // keeps track of new name
   const [newMessage, setNewMessage] = useState(""); // keeps track of new message
 
@@ -13,7 +16,8 @@ function ComposeForm() {
       messageInput: newMessage,
       createdAt : date
     }
-    addMessage(messageData)
+    await addMessage(messageData)
+    navigate("/");
   }
 
   return (
